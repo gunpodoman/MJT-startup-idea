@@ -7,7 +7,7 @@ const submitBtn = document.getElementById('submitBtn');
 const previewMap = [
     { inputId: 'studentId', previewId: 'prevStudentId', defaultText: '학번' },
     { inputId: 'userName', previewId: 'prevUserName', defaultText: '이름' },
-    { inputId: 'itemName', previewId: 'prevItemName', defaultText: '아이템 명' },
+    { inputId: 'itemName', previewId: 'prevItemName', defaultText: '아이템명' },
     { inputId: 'content', previewId: 'prevContent', defaultText: '내용을 입력하세요' }
 ];
 
@@ -37,14 +37,14 @@ form.addEventListener('submit', (e) => {
     })
     .then(response => {
         // 성공적으로 응답을 받았을 때
-        alert('성공! 당신의 아이디어가 MJT 부스에 접수되었습니다.');
+        alert('아이디어가 성공적으로 접수되었습니다^^ 유후~');
         form.reset(); 
         resetPreview();
     })
     .catch(error => {
         // CORS 문제로 브라우저가 응답을 차단했을 경우 (하지만 데이터는 갔을 확률 99%)
         console.log("CORS Note: 브라우저 정책상 응답을 못 읽었으나 전송은 되었을 수 있습니다.");
-        alert('제출 완료! (화면은 에러처럼 보일 수 있으나 시트에는 저장되었습니다.)');
+        alert('제출 완료! (화면 오류가 있을 수 있는데 아무튼 시트에는 저장되었습니다.)');
         form.reset();
         resetPreview();
     })
