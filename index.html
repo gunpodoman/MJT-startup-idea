@@ -12,53 +12,71 @@
         <header class="sidebar">
             <div class="logo">MJT 2025</div>
             <h1>문화·관광<br>창업 챌린지</h1>
-            <p class="description">당신의 아이디어가 역사가 됩니다.</p>
+            <p class="description">역사적 소재를 활용한 나만의 관광 벤처 아이디어를 제안해보세요.</p>
             
             <form id="ideaForm">
-                <div class="input-group">
-                    <label>이름</label>
-                    <input type="text" id="userName" name="userName" placeholder="성함을 입력하세요" required>
+                <div class="row-group">
+                    <div class="input-group">
+                        <label>학번</label>
+                        <input type="text" id="studentId" name="studentId" placeholder="예: 20513" required>
+                    </div>
+                    <div class="input-group">
+                        <label>이름</label>
+                        <input type="text" id="userName" name="userName" placeholder="이름" required>
+                    </div>
                 </div>
+
                 <div class="input-group">
-                    <label>창업 아이템 명</label>
-                    <input type="text" id="itemName" name="itemName" placeholder="아이템 제목" required>
+                    <label>창업 아이템명</label>
+                    <input type="text" id="itemName" name="itemName" placeholder="브랜드/제품명" required>
                 </div>
+
                 <div class="input-group">
-                    <label>상세 내용 (역사적 소재 포함)</label>
-                    <textarea id="content" name="content" rows="6" placeholder="아이디어의 핵심 내용을 작성해주세요" required></textarea>
+                    <label>상세 기획 (역사적 소재 포함)</label>
+                    <textarea id="content" name="content" rows="6" placeholder="어떤 역사적 가치를 담았나요? 상세 내용을 적어주세요." required></textarea>
                 </div>
-                <button type="submit" id="submitBtn">데이터베이스에 기록하기</button>
+
+                <button type="submit" id="submitBtn">아이디어 제출하기</button>
             </form>
         </header>
 
         <main class="preview-area">
-            <div class="card-wrapper" id="captureArea">
+            <div class="card-wrapper">
                 <div class="card-grid">
                     <div class="card-header">
                         <span class="tag">STARTUP IDEA CANVAS</span>
-                        <span class="date">2025.05.XX</span>
+                        <span class="date">2025. MJT</span>
                     </div>
+                    
                     <div class="card-body">
                         <h2 id="prevItemName">아이템 명</h2>
                         <div class="divider"></div>
-                        <div class="content-box">
-                            <small>PROPOSER</small>
-                            <p id="prevUserName">제안자 이름</p>
+                        
+                        <div class="info-row">
+                            <div class="content-box">
+                                <small>STUDENT ID</small>
+                                <p id="prevStudentId">학번</p>
+                            </div>
+                            <div class="content-box">
+                                <small>PROPOSER</small>
+                                <p id="prevUserName">이름</p>
+                            </div>
                         </div>
+
                         <div class="content-box">
                             <small>DESCRIPTION</small>
-                            <p id="prevContent">역사적 소재를 활용한 혁신적인 아이디어가 이곳에 표시됩니다. 왼쪽 입력창에 내용을 채워보세요.</p>
+                            <p id="prevContent">왼쪽 입력창에 내용을 작성하면 이곳에 실시간으로 기획서가 만들어집니다.</p>
                         </div>
                     </div>
+
                     <div class="card-footer">
-                        <span>DAESIN MJT ACADEMIC CLUB</span>
-                        <div class="qr-placeholder">QR</div>
+                        <span>DAESIN HIGH SCHOOL - MJT CLUB</span>
+                        <div class="qr-box">QR</div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
