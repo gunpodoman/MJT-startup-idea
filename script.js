@@ -34,10 +34,15 @@ form.addEventListener('submit', e => {
     // Google Apps Script는 보안상 fetch 기본 방식보다 JSON.stringify 전송이 안정적일 수 있음
     fetch(scriptURL, { 
         method: 'POST', 
+        mode: 'no-cors', // 이 줄을 추가하세요
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify(data)
     })
     .then(response => {
-        alert('성공적으로 기록되었습니다! 당신의 아이디어가 MJT 시트에 담겼습니다.');
+        alert('성공적으로 기록되었습니다! 당신의 아이디어가 문진탐 시트에 담겼습니다.');
         form.reset();
         resetPreview();
     })
