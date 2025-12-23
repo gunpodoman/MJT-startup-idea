@@ -17,15 +17,15 @@
             <form id="ideaForm">
                 <div class="input-group">
                     <label>이름</label>
-                    <input type="text" id="userName" placeholder="성함을 입력하세요" required>
+                    <input type="text" id="userName" name="userName" placeholder="성함을 입력하세요" required>
                 </div>
                 <div class="input-group">
                     <label>창업 아이템 명</label>
-                    <input type="text" id="itemName" placeholder="아이템 제목" required>
+                    <input type="text" id="itemName" name="itemName" placeholder="아이템 제목" required>
                 </div>
                 <div class="input-group">
                     <label>상세 내용 (역사적 소재 포함)</label>
-                    <textarea id="content" rows="6" placeholder="아이디어의 핵심 내용을 작성해주세요" required></textarea>
+                    <textarea id="content" name="content" rows="6" placeholder="아이디어의 핵심 내용을 작성해주세요" required></textarea>
                 </div>
                 <button type="submit" id="submitBtn">데이터베이스에 기록하기</button>
             </form>
