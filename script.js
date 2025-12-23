@@ -1,4 +1,4 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzp-bWB60SFBOV11r3m6b-kE7BRrmAdz6kH7-6F0kjMWNV2yuiZJRDXkEkpHlMI5wE/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_E3Zkd8FoXfzW5igCHbM-PsLfLFb1UBY_7ef_RqaIYtAN-CL2nP5bzGfsBxJi4r76/exec';
 
 const form = document.getElementById('ideaForm');
 const submitBtn = document.getElementById('submitBtn');
