@@ -1,7 +1,7 @@
 :root {
     --bg-color: #f4f1ea;
     --card-bg: #ffffff;
-    --primary-color: #4a3728;
+    --primary-color: #4a3728; /* 기존 색상 유지 */
     --accent-color: #8b5e3c;
     --border-color: #000000;
 }
@@ -16,7 +16,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--primary-color);
-    overflow-x: hidden;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
 }
 
 .container {
@@ -25,13 +25,16 @@ body {
     min-height: 100vh;
 }
 
-/* 사이드바 입력창 영역 */
+/* --- 사이드바 영역 --- */
 .sidebar {
     padding: 40px;
     background: #ede9e0;
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
+    /* 내용이 많을 경우 사이드바도 스크롤 되도록 설정 */
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .logo {
@@ -52,8 +55,15 @@ h1 {
     opacity: 0.8;
 }
 
+/* [추가됨] 학번/이름을 가로로 배치하기 위한 클래스 */
+.row-group {
+    display: flex;
+    gap: 10px;
+}
+
 .input-group {
     margin-bottom: 20px;
+    width: 100%; /* 가로 배치 시 꽉 차게 */
 }
 
 label {
@@ -71,6 +81,15 @@ input, textarea {
     border: 1px solid var(--border-color);
     color: var(--primary-color);
     font-size: 1rem;
+    /* 폼 요소 디자인 통일 */
+    border-radius: 0; 
+}
+
+/* 포커스 시 디자인 (사용자 편의성) */
+input:focus, textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+    border-color: var(--accent-color);
 }
 
 button {
@@ -91,24 +110,30 @@ button:hover {
 
 button:disabled {
     background: #ccc;
+    cursor: not-allowed;
 }
 
-/* 프리뷰 영역 */
+/* --- 프리뷰 영역 --- */
 .preview-area {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
+    height: 100vh; /* 화면 꽉 채움 */
+    overflow: hidden; /* 배경 스크롤 방지 */
 }
 
 .card-wrapper {
     width: 100%;
     max-width: 500px;
     aspect-ratio: 1 / 1.414; /* A4 비율 */
+    max-height: 90vh; /* 화면이 작아도 카드가 짤리지 않게 함 */
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     padding: 40px;
     box-shadow: 20px 20px 0px rgba(0,0,0,0.05);
+    display: flex; /* 내부 요소 정렬용 */
+    flex-direction: column;
 }
 
 .card-grid {
@@ -116,9 +141,12 @@ button:disabled {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden; /* 내용 넘침 방지 */
 }
 
+/* 헤더와 푸터는 크기가 줄어들지 않도록 고정 (flex-shrink: 0) */
 .card-header {
+    flex-shrink: 0; 
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
@@ -127,21 +155,63 @@ button:disabled {
     padding-bottom: 10px;
 }
 
+/* --- [핵심 수정] 카드 몸통 부분 --- */
+.card-body {
+    flex: 1; /* 남는 공간을 모두 차지 */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* 내부 스크롤을 위해 넘치는 요소 숨김 */
+    margin-bottom: 20px;
+    min-height: 0; /* 파이어폭스 등에서 flex 스크롤 버그 방지 */
+}
+
 .card-body h2 {
+    flex-shrink: 0; /* 제목 크기 고정 */
     font-size: 2.5rem;
     margin: 30px 0 10px 0;
     word-break: keep-all;
+    line-height: 1.2;
 }
 
 .divider {
+    flex-shrink: 0;
     width: 50px;
     height: 4px;
     background: var(--border-color);
     margin-bottom: 30px;
 }
 
+/* [추가됨] 카드 내부 학번/이름 가로 정렬 */
+.info-row {
+    flex-shrink: 0;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 10px;
+}
+
 .content-box {
     margin-bottom: 25px;
+}
+
+/* --- [핵심 수정] 스크롤 기능 구현 --- */
+/* 마지막 content-box(상세내용)가 남는 공간을 다 쓰고 스크롤 생기게 함 */
+.card-body .content-box:last-child {
+    flex: 1; 
+    overflow-y: auto; /* 내용이 넘치면 세로 스크롤 */
+    margin-bottom: 0;
+    padding-right: 10px; /* 스크롤바와 글자 사이 여백 */
+}
+
+/* 스크롤바 디자인 (깔끔하게) */
+.card-body .content-box:last-child::-webkit-scrollbar {
+    width: 5px;
+}
+.card-body .content-box:last-child::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+.card-body .content-box:last-child::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 .content-box small {
@@ -149,15 +219,18 @@ button:disabled {
     font-size: 0.7rem;
     color: #999;
     margin-bottom: 5px;
+    letter-spacing: 0.5px;
 }
 
 .content-box p {
     font-size: 1.1rem;
     line-height: 1.6;
     word-break: break-all;
+    white-space: pre-wrap; /* 줄바꿈 반영 */
 }
 
 .card-footer {
+    flex-shrink: 0; /* 푸터 크기 고정 */
     border-top: 1px solid var(--border-color);
     padding-top: 20px;
     display: flex;
@@ -167,7 +240,7 @@ button:disabled {
     font-weight: bold;
 }
 
-.qr-placeholder {
+.qr-box { /* 클래스명 통일 (html엔 qr-box로 되어있음) */
     width: 40px;
     height: 40px;
     border: 1px solid var(--border-color);
@@ -180,9 +253,20 @@ button:disabled {
 @media (max-width: 850px) {
     .container {
         grid-template-columns: 1fr;
+        display: block; /* 모바일에서는 블록 요소로 */
     }
     .sidebar {
+        height: auto;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
+    }
+    .preview-area {
+        height: auto;
+        padding: 20px;
+        background: #f4f1ea; /* 모바일 배경색 통일 */
+    }
+    .card-wrapper {
+        height: 600px; /* 모바일에서 카드 높이 고정 */
+        aspect-ratio: auto;
     }
 }
